@@ -1,0 +1,59 @@
+#################################################################################
+# palette
+#################################################################################
+/def /purewhite actor:s
+     /color/add $actor 1 1 1
+
+/def /white actor:s
+     /color/add $actor 0.97 0.95 0.87
+
+/def /black actor:s
+     /color/add $actor 0 0 0
+
+/def /blue/dk actor:s
+     /color/add $actor 0.05 0.08 0.09
+
+/def /blue actor:s
+     /color/add $actor 0.21 0.28 0.32
+
+/def /blue/mid actor:s
+    /color/add $actor 0.35 0.4 0.45
+
+/def /blue/lt actor:s
+    /color/add $actor 0.45 0.58 0.66
+
+/def /yellow actor:s
+     /color/add $actor 1 0.93 0.29
+
+/def /orange actor:s
+     /color/add $actor 0.91 0.43 0.09
+
+/def /orange/abstract actor:s
+     /color/add $actor 0.91 0.63 0.2
+
+/def /orange/lt actor:s
+     /color/add $actor 0.91 0.63 0.29
+
+/def /red actor:s
+     /color/add $actor 0.32 0.05 0.08
+
+/def /red/lt actor:s
+     /color/add $actor 0.42 0.05 0.08
+
+/def /red/dk actor:s
+     /color/add $actor 0.32 0.05 0.08
+
+/def /gray/dk actor:s
+     /color/add $actor 0.12 0.17 0.20
+
+/def /gray actor:s
+     /color/add $actor 0.59 0.61 0.62
+
+/def /green actor:s
+    /color/add $actor 0.4 0.5 0.0
+
+/def /green/lt actor:s
+    /color/add $actor 0.6 0.7 0.3
+
+/def /green/dk actor:s
+    /color/add $actor 0.3 0.4 0.1
