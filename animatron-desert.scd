@@ -15,6 +15,7 @@ Tdef(\desert_sun, {
 	a.cmd("/size % 1.1", ~sun);
 	a.cmd("/y % %", ~sun, ~sunY);
 	a.cmd("/tween % linear /position/y % %", ~sunTime, ~sun, ~sunEndY);
+	a.cmd("/tween % linear /color % %", ~desertSkyTime, ~bg, ~desertSkyColor);
 });
 
 Tdef(\desert_clouds, {
@@ -32,6 +33,7 @@ Tdef(\desert_clouds, {
 		a.cmd("/color % %", actor, ~desertBgColor);
 		if(0.5.coin) { a.cmd("/flip/h %", actor) };
 	};
+	a.cmd("/tween % linear /color %* %", ~desertSkyTime, ~cld, ~desertCloudColor);
 });
 
 Tdef(\desert_whale, {
@@ -121,6 +123,9 @@ Tdef(\desert_life, {
 		1.wait;
 	};
 	a.cmd("/tween % linear /color %* %", rrand(10,20), ~gnd, ~desertPlantColorA);
+	a.cmd("/tween % linear /color %* %", rrand(10,20), ~mnt, ~desertPlantColorA);
+	a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
+	a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
 });
 
 Tdef(\desert, {

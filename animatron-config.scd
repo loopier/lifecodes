@@ -40,6 +40,8 @@
 ~desertSunColor = ~palette.yellow.asCmdArgs;
 ~desertPlantColorA = ~palette.green_hl.asCmdArgs;
 ~desertPlantColorB = ~palette.green_lt.asCmdArgs;
+~desertSkyColor = ~palette.blue_lt.asCmdArgs;
+~desertCloudColor = ~palette.blue.asCmdArgs;
 
 ~harlequinSize = 0.5;
 ~groundSquares = 8;
@@ -54,6 +56,7 @@
 ~sunTime = 140;
 ~sunY = ~displayHeight + 50;
 ~sunEndY = ~displayHeight.neg / 2;
+~desertSkyTime = ~sunTime;
 
 ~desertCloudsY = ~displayHeight / 2 + 20;
 
