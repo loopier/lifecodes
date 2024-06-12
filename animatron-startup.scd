@@ -17,10 +17,4 @@ a.cmd("/editor/toggle");
 
 Tdef(\desert).play
 Tdef(\desert_life).play
-Tdef(\desert_sun).play
 
-
-a.cmd("/free sun");
-a.cmd("/free *");
-a.cmd("/opacity gnd* %", 0.1);
-a.cmd("/actors");
