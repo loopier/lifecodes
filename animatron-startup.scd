@@ -1,5 +1,6 @@
 ( // app setup
 "animatron-config.scd".loadRelative;
+"animatron-desert.scd".loadRelative;
 a = Animatron.boot;
 a.cmd("/post alo");
 a.cmd("/log/level info");
@@ -13,8 +14,6 @@ a.cmd("/animations");
 a.cmd("/editor/toggle");
 );
 
-"animatron-desert.scd".loadRelative;
 
-Tdef(\desert).play
-Tdef(\desert_life).play
-
+~desert.(~interval);
+~desert_life.();

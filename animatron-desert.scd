@@ -5,7 +5,7 @@
 	a.cmd("/create % solid", ~bg);
 	a.cmd("/size % % %", ~bg, ~displayWidth, ~displayHeight);
 	a.cmd("/color % %", ~bg, ~desertBgColor);
-});
+};
 
 ~desert_sun = {
 	a.cmd("/free %", ~sun);
@@ -16,7 +16,7 @@
 	a.cmd("/y % %", ~sun, ~sunY);
 	a.cmd("/tween % linear /position/y % %", ~sunTime, ~sun, ~sunEndY);
 	a.cmd("/tween % linear /color % %", ~desertSkyTime, ~bg, ~desertSkyColor);
-});
+};
 
 ~desert_clouds = {
 	a.cmd("/free %*", ~cld);
@@ -34,7 +34,7 @@
 		if(0.5.coin) { a.cmd("/flip/h %", actor) };
 	};
 	a.cmd("/tween % linear /color %* %", ~desertSkyTime, ~cld, ~desertCloudColor);
-});
+};
 
 ~desert_whale = {
 	var actor = ~whale;
@@ -46,7 +46,7 @@
 	a.cmd("/x % %", actor, ~desertWhaleX);
 	a.cmd("/y % %", actor, ~desertWhaleY + 130);
 	// a.cmd("/front % %-%", actor, ~cld, ~clouds-1);
-});
+};
 
 ~desert_mountains = {
 	a.cmd("/free mnt*");
@@ -63,7 +63,7 @@
 		a.cmd("/opacity % %", actor, rrand(0.9,0.95));
 		a.cmd("/angle % %", actor, 20.rand2);
 	};
-});
+};
 
 ~desert_ground = {
 	a.cmd("/free gnd*");
@@ -75,7 +75,7 @@
 		a.cmd("/y % %", actor, ~desertGndY);
 		a.cmd("/speed % %", actor, rrand(0.5,1));
 	};
-});
+};
 
 ~desert_seeds = {
 	a.cmd("/free seed-*");
@@ -96,7 +96,7 @@
 		a.cmd("/state/add % flower-2 seed-grow-1", actor);
 		a.cmd("/state/add % seed-akh seed-grow-1", actor);
 	};
-});
+};
 
 ~desert_harlequin = {
 	a.cmd("/free %", ~harlequin);
@@ -113,7 +113,7 @@
 	a.cmd("/color %* % % %", ~harlequin, 0.93, 0.45, 0.11);
 	a.cmd("/stop %", ~harlequin);
 	a.cmd("/frame % %", ~harlequin, 12.rand);
-});
+};
 
 ~desert_life = {
 	Tdef(\desert_life, {
@@ -127,32 +127,32 @@
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~mnt, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
-	});
-});
+	}).play;
+};
 
-~desert = {
+~desert = { |interval|
 	Tdef(\desert, {
-		Tdef(\desert_bg).play;
-		~interval.wait;
-		Tdef(\desert_sun).play;
-		~interval.wait;
-		Tdef(\desert_clouds).play;
-		~interval.wait;
-		Tdef(\desert_whale).play;
-		~interval.wait;
-		Tdef(\desert_mountains).play;
-		~interval.wait;
-		Tdef(\desert_ground).play;
-		~interval.wait;
-		Tdef(\desert_seeds).play;
-		~interval.wait;
-		Tdef(\desert_harlequin).play;
-	});
+		~desert_bg.();
+		interval.wait;
+		~desert_sun.();
+		interval.wait;
+		~desert_clouds.();
+		interval.wait;
+		~desert_whale.();
+		interval.wait;
+		~desert_mountains.();
+		interval.wait;
+		~desert_ground.();
+		interval.wait;
+		~desert_seeds.();
+		interval.wait;
+		~desert_harlequin.();
+	}).play;
 };
 
 
-~harlequinUpdate = Pfunc{|e|
-	a.cmd("/next/frame %", ~harlequin);
-};
+// ~harlequinUpdate = Pfunc{|e|
+// 	a.cmd("/next/frame %", ~harlequin);
+// };
 
 )
