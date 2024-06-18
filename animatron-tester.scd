@@ -3,7 +3,7 @@
 "animatron-underwater.scd".loadRelative;
 (
 Tdef(\lifecodes_test, {
-	// Tdef(\desert).play;
+	Tdef(\desert).play;
 	3.wait;
 	Tdef(\desert_life).play;
 	140.wait;

@@ -1,13 +1,13 @@
 ( // desert
 
 // bg
-Tdef(\desert_bg, {
+~desert_bg = {
 	a.cmd("/create % solid", ~bg);
 	a.cmd("/size % % %", ~bg, ~displayWidth, ~displayHeight);
 	a.cmd("/color % %", ~bg, ~desertBgColor);
 });
 
-Tdef(\desert_sun, {
+~desert_sun = {
 	a.cmd("/free %", ~sun);
 	a.cmd("/create % circle", ~sun);
 	a.cmd("/color % %", ~sun, ~desertSunColor);
@@ -18,7 +18,7 @@ Tdef(\desert_sun, {
 	a.cmd("/tween % linear /color % %", ~desertSkyTime, ~bg, ~desertSkyColor);
 });
 
-Tdef(\desert_clouds, {
+~desert_clouds = {
 	a.cmd("/free %*", ~cld);
 	~clouds.do{|i|
 		var actor = "%-%".format(~cld, i.asInteger);
@@ -36,7 +36,7 @@ Tdef(\desert_clouds, {
 	a.cmd("/tween % linear /color %* %", ~desertSkyTime, ~cld, ~desertCloudColor);
 });
 
-Tdef(\desert_whale, {
+~desert_whale = {
 	var actor = ~whale;
 	a.cmd("/free %", actor);
 	a.cmd("/create % whale", actor);
@@ -48,7 +48,7 @@ Tdef(\desert_whale, {
 	// a.cmd("/front % %-%", actor, ~cld, ~clouds-1);
 });
 
-Tdef(\desert_mountains, {
+~desert_mountains = {
 	a.cmd("/free mnt*");
 	~mountains.do{ |i|
 		var actor = "%-%".format(~mnt, i.asInteger);
@@ -65,7 +65,7 @@ Tdef(\desert_mountains, {
 	};
 });
 
-Tdef(\desert_ground, {
+~desert_ground = {
 	a.cmd("/free gnd*");
 	~groundSquares.do{ |i|
 		var actor = "%-%".format(~gnd, i.asInteger);
@@ -77,7 +77,7 @@ Tdef(\desert_ground, {
 	};
 });
 
-Tdef(\desert_seeds, {
+~desert_seeds = {
 	a.cmd("/free seed-*");
 	~seeds.do{ |i|
 		var actor = "%-%".format(~seed, i.asInteger);
@@ -98,7 +98,7 @@ Tdef(\desert_seeds, {
 	};
 });
 
-Tdef(\desert_harlequin, {
+~desert_harlequin = {
 	a.cmd("/free %", ~harlequin);
 	// a.cmd("/create ha harlequin-clock");
 	a.cmd("/create % shape", ~harlequin);
@@ -115,40 +115,44 @@ Tdef(\desert_harlequin, {
 	a.cmd("/frame % %", ~harlequin, 12.rand);
 });
 
-Tdef(\desert_life, {
-	~seeds.do{|i|
-		var actor = "%-%".format(~seed, i.asInteger);
-		a.cmd("/play %", actor);
-		a.cmd("/tween % linear /color % %", rrand(1,10), actor, [~desertPlantColorA, ~desertPlantColorB].choose);
-		1.wait;
-	};
-	a.cmd("/tween % linear /color %* %", rrand(10,20), ~gnd, ~desertPlantColorA);
-	a.cmd("/tween % linear /color %* %", rrand(10,20), ~mnt, ~desertPlantColorA);
-	a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
-	a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
+~desert_life = {
+	Tdef(\desert_life, {
+		~seeds.do{|i|
+			var actor = "%-%".format(~seed, i.asInteger);
+			a.cmd("/play %", actor);
+			a.cmd("/tween % linear /color % %", rrand(1,10), actor, [~desertPlantColorA, ~desertPlantColorB].choose);
+			1.wait;
+		};
+		a.cmd("/tween % linear /color %* %", rrand(10,20), ~gnd, ~desertPlantColorA);
+		a.cmd("/tween % linear /color %* %", rrand(10,20), ~mnt, ~desertPlantColorA);
+		a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
+		a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
+	});
 });
 
-Tdef(\desert, {
-	Tdef(\desert_bg).play;
-	~interval.wait;
-	Tdef(\desert_sun).play;
-	~interval.wait;
-	Tdef(\desert_clouds).play;
-	~interval.wait;
-	Tdef(\desert_whale).play;
-	~interval.wait;
-	Tdef(\desert_mountains).play;
-	~interval.wait;
-	Tdef(\desert_ground).play;
-	~interval.wait;
-	Tdef(\desert_seeds).play;
-	~interval.wait;
-	Tdef(\desert_harlequin).play;
-});
+~desert = {
+	Tdef(\desert, {
+		Tdef(\desert_bg).play;
+		~interval.wait;
+		Tdef(\desert_sun).play;
+		~interval.wait;
+		Tdef(\desert_clouds).play;
+		~interval.wait;
+		Tdef(\desert_whale).play;
+		~interval.wait;
+		Tdef(\desert_mountains).play;
+		~interval.wait;
+		Tdef(\desert_ground).play;
+		~interval.wait;
+		Tdef(\desert_seeds).play;
+		~interval.wait;
+		Tdef(\desert_harlequin).play;
+	});
+};
 
 
-// ~harlequinUpdate = Pfunc{|e|
-// 	a.cmd("/next/frame %", ~harlequin);
-// };
+~harlequinUpdate = Pfunc{|e|
+	a.cmd("/next/frame %", ~harlequin);
+};
 
 )
