@@ -77,6 +77,23 @@
 	};
 };
 
+~desert_brushes = {
+	a.cmd("/free %*", ~br);
+	~brushes.do{|i|
+		var actor = "%-%".format(~br, i.asInteger);
+		a.cmd("/create % brush-blob", actor);
+		a.cmd("/speed %", actor, rrand(0.5,2.1));
+		a.cmd("/stop %", actor);
+		a.cmd("/frame % %", actor, 12.rand);
+		a.cmd("/color % %", actor, ~desertBgColor);
+		a.cmd("/x % %", actor, ~displayWidth.rand);
+		a.cmd("/y % %", actor, i.linlin(0, ~brushes, ~displayHeight, ~displayHeight/2));
+		a.cmd("/size/y % %", actor, i.linlin(0, ~brushes, 0.3, 0.1));
+		if(0.5.coin) { a.cmd("/flip/h %", actor) };
+		a.cmd("/opacity % %", actor, rrand(0.2,1));
+	}
+};
+
 ~desert_seeds = {
 	a.cmd("/free seed-*");
 	~seeds.do{ |i|
@@ -91,20 +108,21 @@
 		a.cmd("/frame % %", actor, 6.rand);
 		a.cmd("/color % %", actor, ~desertColor);
 		a.cmd("/state/add % seed-grow-1 seed-1", actor);
-		a.cmd("/state/add % seed-1 seed-1 flower-1 flower-2 seed-akh", actor);
+		a.cmd("/state/add % seed-1 seed-1 flower-1 flower-2", actor);
 		a.cmd("/state/add % flower-1 seed-grow-1", actor);
 		a.cmd("/state/add % flower-2 seed-grow-1", actor);
-		a.cmd("/state/add % seed-akh seed-grow-1", actor);
+		// a.cmd("/state/add % seed-akh seed-grow-1", actor);
 	};
 };
 
 ~desert_tv = {
+	a.cmd("/free %*", ~tv);
 	a.cmd("/create tv tv");
-	a.cmd("/color tv* %", ~desertPlantColorA);
-	a.cmd("/angle tv 5");
-	a.cmd("/position/x tv %", ~displayWidth * 4 / 9 - 200);
-	a.cmd("/position/y tv %", ~displayHeight / 2 + 120)
-	a.cmd("/behind tv seed-%", 15);
+	a.cmd("/color tv* %", ~desertColor);
+	a.cmd("/angle tv %", ~desertTvAngle);
+	a.cmd("/position/x tv %", ~desertTvX);
+	a.cmd("/position/y tv %", ~desertTvY);
+	a.cmd("/behind tv seed-%", ~desertTvBehindSeed);
 };
 
 ~desert_harlequin = {
@@ -135,6 +153,7 @@
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~gnd, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~mnt, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
+		a.cmd("/tween % linear /color %* %", rrand(10,20), ~tv, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
 	}).play;
 };
@@ -152,9 +171,11 @@
 		~desert_mountains.();
 		interval.wait;
 		~desert_ground.();
+		~desert_brushes.();
 		interval.wait;
 		~desert_seeds.();
 		interval.wait;
+		~desert_tv.();
 		~desert_harlequin.();
 	}).play;
 };

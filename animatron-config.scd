@@ -34,6 +34,8 @@
 ~mnt = "mnt";
 ~seed = "seed";
 ~cld = "cld";
+~br = "br";
+~tv = "tv";
 
 ~desertColor = ~palette.orange.asCmdArgs;
 ~desertBgColor = ~palette.red_lt.asCmdArgs;
@@ -48,6 +50,7 @@
 ~mountains = 25;
 ~seeds = 50;
 ~clouds = 6;
+~brushes = 50;
 
 ~mountainsY = 680;
 ~desertGndY = 1200;
@@ -65,4 +68,8 @@
 ~desertWhaleAngle = 15;
 ~desertWhaleSize = 0.5;
 
+~desertTvX = ~displayWidth * 4 / 9 - 200;
+~desertTvY = ~displayHeight / 2 + 120;
+~desertTvBehindSeed = 15;
+~desertTvAngle = 5;
 )
