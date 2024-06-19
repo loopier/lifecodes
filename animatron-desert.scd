@@ -98,6 +98,15 @@
 	};
 };
 
+~desert_tv = {
+	a.cmd("/create tv tv");
+	a.cmd("/color tv* %", ~desertPlantColorA);
+	a.cmd("/angle tv 5");
+	a.cmd("/position/x tv %", ~displayWidth * 4 / 9 - 200);
+	a.cmd("/position/y tv %", ~displayHeight / 2 + 120)
+	a.cmd("/behind tv seed-%", 15);
+};
+
 ~desert_harlequin = {
 	a.cmd("/free %", ~harlequin);
 	// a.cmd("/create ha harlequin-clock");
