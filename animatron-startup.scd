@@ -12,6 +12,7 @@ a.cmd("/commands");
 a.cmd("/load *");
 a.cmd("/animations");
 a.cmd("/editor/toggle");
+a.cmd("/window/windowed");
 );
 
 

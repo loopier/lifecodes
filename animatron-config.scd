@@ -3,6 +3,8 @@
 ~assetsPath = "%/../animations".format(~basePath);
 ~displayWidth = 1920*3;
 ~displayHeight = 1200;
+~centerX = ~displayWidth/2;
+~centerY = ~displayHeight/2;
 ~interval = 0.1;
 
 ~palette = ().know_(true);
@@ -45,10 +47,9 @@
 ~desertSkyColor = ~palette.blue_lt.asCmdArgs;
 ~desertCloudColor = ~palette.blue.asCmdArgs;
 
-~harlequinSize = 0.5;
 ~groundSquares = 8;
 ~mountains = 25;
-~seeds = 50;
+~seeds = 100;
 ~clouds = 6;
 ~brushes = 50;
 
@@ -57,6 +58,7 @@
 ~desertCloudsY = ~displayHeight / 2 + 25;
 
 ~sunTime = 140;
+~sunX = ~displayWidth / 2;
 ~sunY = ~displayHeight + 50;
 ~sunEndY = ~displayHeight.neg / 2;
 ~desertSkyTime = ~sunTime;
@@ -72,4 +74,8 @@
 ~desertTvY = ~displayHeight / 2 + 120;
 ~desertTvBehindSeed = 15;
 ~desertTvAngle = 5;
+
+~harlequinSize = 0.5;
+~harlequinX = ~displayWidth * 5 / 9;
+~harlequinY = 500;
 )

@@ -13,6 +13,7 @@
 	a.cmd("/color % %", ~sun, ~desertSunColor);
 	a.cmd("/speed % %", ~sun, rrand(0.5,1));
 	a.cmd("/size % 1.1", ~sun);
+	a.cmd("/x % %", ~sun, ~sunX);
 	a.cmd("/y % %", ~sun, ~sunY);
 	a.cmd("/tween % linear /position/y % %", ~sunTime, ~sun, ~sunEndY);
 	a.cmd("/tween % linear /color % %", ~desertSkyTime, ~bg, ~desertSkyColor);
@@ -131,12 +132,12 @@
 	a.cmd("/create % shape", ~harlequin);
 	a.cmd("/size % %", ~harlequin, ~harlequinSize);
 	a.cmd("/angle %", ~harlequin, 360.rand);
-	a.cmd("/y % %", ~harlequin, 500);
+	a.cmd("/x %* %", ~harlequin, ~harlequinX);
+	a.cmd("/y % %", ~harlequin, ~harlequinY);
 	a.cmd("/angle % %", ~harlequin, -10);
 	// a.cmd("/create %-gnd rocks", ~harlequin);
 	// a.cmd("/parent %-gnd ha", ~harlequin);
 	// a.cmd("/y %-gnd %", ~harlequin, 640);
-	a.cmd("/x %* %", ~harlequin, ~displayWidth * 6 / 9);
 	a.cmd("/color %* % % %", ~harlequin, 0.93, 0.45, 0.11);
 	a.cmd("/stop %", ~harlequin);
 	a.cmd("/frame % %", ~harlequin, 12.rand);
@@ -155,6 +156,14 @@
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~whale, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~tv, ~desertPlantColorA);
 		a.cmd("/tween % linear /color %* %", rrand(10,20), ~harlequin, ~desertPlantColorB);
+		~brushes.do{|i|
+			var actor = "%-%".format(~br, i.asInteger);
+			a.cmd("/play %", actor);
+			a.cmd("/speed % %", actor, rrand(1.0,1.2));
+			a.cmd("/color % %", actor, [~desertPlantColorA, ~desertPlantColorB, ~desertSkyColor].choose);
+			a.cmd("/tween % linear /color % %", rrand(10,20), actor, [~desertPlantColorA, ~desertPlantColorB, ~desertBgColor].choose);
+			0.1.wait;
+		};
 	}).play;
 };
 
